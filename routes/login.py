@@ -1,4 +1,3 @@
-
 from werkzeug.security import generate_password_hash
 from crypt import methods
 from click import password_option
@@ -9,11 +8,12 @@ from utils.db import db
 
 user_login = Blueprint('user_login', __name__)
 
+#ruta raiz
 @user_login.route('/')
 def index ():
     return redirect('login')
 
-
+#ruta login
 @user_login.route('/login',methods=['GET','POST'])
 def login():
     sing_up= 'sing_up'
@@ -29,6 +29,7 @@ def login():
          
     return render_template('login.html', sing_up = sing_up)
 
+#ruta register
 @user_login.route('/register', methods = ['GET','POST'])
 def register():
     sing_up = 'Iniciar Sesión'
@@ -55,7 +56,7 @@ def register():
         
     return render_template('register.html',sing_up = sing_up)
 
-
+#ruta de logout
 @user_login.route('/logout')
 def logout():
     logout_user()

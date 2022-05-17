@@ -10,6 +10,7 @@ crud = Blueprint('crud',__name__)
 #ruta del crud
 @crud.route('/crud')
 @login_required
+
 def home_crud():
     students = student.query.all()
     return render_template('crud.html',students = students)
