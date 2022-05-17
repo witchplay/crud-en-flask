@@ -1,0 +1,16 @@
+{%extends 'layout.html'%}
+{% block content%}
+<div class="forms">
+       <h1 class="inf">Agregar informacion</h1>
+       <form class="forms-1" action="/add" method="POST">
+         
+           <input class="form" type="text" name="nombre" placeholder="Nombre"  required="required">
+           <input class="form" type="text" name="correo" placeholder="Correo" id="email" required="required">
+           <input class="form" type="text" name="telefono" placeholder="telefono"  required="required">
+           <input class="form" type="text" name="fecha" placeholder="Fecha de cumpleanos" required="required">
+          
+           <button class="botons" type="submit">Agregar</button>
+
+       </form>
+  </div>
+{%endblock%}

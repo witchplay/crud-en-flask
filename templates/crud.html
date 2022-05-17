@@ -1,0 +1,71 @@
+{%extends 'layout.html'%}
+
+
+{% block content%}
+
+
+
+<div class="contain">
+  <ul class="table-option">
+    <li>
+  Estudiantes
+    </li>
+    <li>
+      <a class="link0" href="/add">Agregar</a>
+    </li>
+  
+  </ul>
+  
+  {% with messages = get_flashed_messages() %}
+
+  {% if messages%}
+      {% for message in messages%}
+       <h4>{{message}}</h4>
+      {% endfor %}
+  {% endif%}
+  
+  {% endwith %}
+  
+      <table class="table">
+          <thead class="table0" >
+            <tr >
+              <th  scope="col">Nombre</th>
+              <th  scope="col">Correo</th>
+              <th  scope="col">Telefono</th>
+              <th  scope="col">N id</th>
+              <th  scope="col"> Fecha de cumpleaños</th>
+             
+            </tr>
+          </thead>    
+
+      {% for students in students%}
+          
+     
+        <tbody>
+          <tr>
+            <th scope="row">{{students.nombre}}</th>
+             <td>{{students.correo}}</td>
+             <td>{{students.telefono}}</td>
+             <td>{{students.id}}</td>
+             <td>{{students.fecha_de_cumpleanos}} </td>
+             
+             <td ><a  class="link1" href="{{url_for('crud.update',id = students.id)}}">update</a></td>
+              <td ><a class="link2" href="{{url_for('crud.delete',id= students.id)}}">borrar</a></td>
+             
+            </tr>
+            
+            
+     
+  
+          
+          
+      {%endfor%}
+  </table>
+
+
+
+</div>
+
+
+
+{%endblock%}

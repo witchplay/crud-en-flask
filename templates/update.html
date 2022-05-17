@@ -1,0 +1,17 @@
+
+ {%extends 'layout.html'%}
+ {% block content%}
+ <div class="forms">
+        <h1 class="inf">Actualizar informacion</h1>
+        <form class="forms-1" action="/update/{{updateid.id}}" method="POST">
+          
+            <input class="form" type="text" name="nombre" value="{{updateid.nombre}}"  required="required">
+            <input class="form" type="text" name="correo" value="{{updateid.correo}}" id="email" required="required">
+            <input class="form" type="text" name="telefono" value="{{updateid.telefono}}"  required="required">
+            <input class="form" type="text" name="fecha" value="{{updateid.fecha_de_cumpleanos}}" required="required">
+           
+            <button class="botons" type="submit">Actualizar</button>
+
+        </form>
+   </div>
+{%endblock%}
