@@ -12,4 +12,4 @@ login.login_message = 'Por favor inica sesión para acceder a esta página.'
 
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run()
