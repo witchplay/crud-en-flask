@@ -7,10 +7,10 @@ from utils.db import db
 
 
 crud = Blueprint('crud',__name__)
+
 #ruta del crud
 @crud.route('/crud')
 @login_required
-
 def home_crud():
     students = student.query.all()
     return render_template('crud.html',students = students)
@@ -67,9 +67,19 @@ def delete(id):
     flash('Borrado correctamente')
     return redirect(url_for('crud.home_crud'))
 
+#ruta de search
+@crud.route('/search')
+@login_required
+
+def search():
+    return redirect(url_for('crud.home_crud'))
+
+
 #ruta de about
 @crud.route('/about')
 @login_required
 def about():
    return render_template('about.html')
+
+
 
