@@ -6,6 +6,7 @@ from routes.crud import crud
 from flask_sqlalchemy import SQLAlchemy
 
 
+
 app = Flask(__name__)
 
 app.secret_key = 'S==%TxpO@E3@zA'
@@ -15,6 +16,8 @@ app.register_blueprint(crud)
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://bitcode:poiuy0mn@bitcode.mysql.pythonanywhere-services.com/bitcode$crud'
+app.config['SQLALCHEMY_POOL_SIZE'] = 100
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 290
 app.config[' SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 

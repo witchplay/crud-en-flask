@@ -22,12 +22,16 @@ def login():
     if current_user.is_authenticated:
         return redirect('/crud')
 
-    if request.method == "POST":
+    try:
+        if request.method == "POST":
          email = request.form['email']
          user = logindb.query.filter_by(email = email).first()
          if user is not None and user.check_password(user.password,request.form['password']):
              login_user(user)
              return redirect('/crud')
+    except:
+        db.session.rollback()
+
 
     return render_template('login.html', sing_up = sing_up , rout = rout,login = login)
 

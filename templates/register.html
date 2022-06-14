@@ -50,20 +50,6 @@
         </form>
     </div>
 
-<script>
-
-    document.getElementById('email').addEventListener('onclick', function() {
-    campo = event.target;
-    valido = document.getElementById('emailOK');
-
-    emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    if (emailRegex.test(campo.value)) {
-      valido.innerText = "válido";
-    } else {
-      valido.innerText = "incorrecto";
-    }
-});
-</script>
 
 </body>
 </html>
