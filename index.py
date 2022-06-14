@@ -7,7 +7,7 @@ with app.app_context():
 
 login.init_app(app)
 login.login_view = 'login'
-login.login_message = 'Por favor inica sesión para acceder a esta página.'
+login.login_message = '     '
 
 
 

@@ -11,28 +11,34 @@ user_login = Blueprint('user_login', __name__)
 #ruta raiz
 @user_login.route('/')
 def index ():
-    return redirect('login')
+    return redirect(url_for('user_login.login'))
 
 #ruta login
 @user_login.route('/login',methods=['GET','POST'])
 def login():
     sing_up= 'sing_up'
+    rout = '/register'
+    login = 'No tienes cuenta?'
     if current_user.is_authenticated:
         return redirect('/crud')
-    
+
     if request.method == "POST":
          email = request.form['email']
          user = logindb.query.filter_by(email = email).first()
          if user is not None and user.check_password(user.password,request.form['password']):
              login_user(user)
              return redirect('/crud')
-         
-    return render_template('login.html', sing_up = sing_up)
+
+    return render_template('login.html', sing_up = sing_up , rout = rout,login = login)
 
 #ruta register
+
+
 @user_login.route('/register', methods = ['GET','POST'])
 def register():
     sing_up = 'Iniciar Sesión'
+    rout = '/login'
+    login = 'Tienes cuenta?'
 
     if current_user.is_authenticated:
         return redirect('/')
@@ -41,20 +47,21 @@ def register():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        print(password)
+
 
         if logindb.query.filter_by(email=email).first():
             flash('Correo ya existente')
             return redirect('/register')
 
+
         hash = generate_password_hash(password)
         user = logindb(username=username,email=email,password=hash)
         db.session.add(user)
         db.session.commit()
-
         return redirect('/login')
-        
-    return render_template('register.html',sing_up = sing_up)
+
+
+    return render_template('register.html',sing_up = sing_up,rout=rout,login=login)
 
 #ruta de logout
 @user_login.route('/logout')

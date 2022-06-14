@@ -19,7 +19,7 @@ def home_crud():
 @crud.route('/add', methods=['POST','GET'])
 @login_required
 def add():
-    
+
 
     if request.method == 'POST':
        nombre = request.form['nombre']
@@ -34,7 +34,7 @@ def add():
 
        return redirect(url_for('crud.home_crud'))
     else:
-        
+
         return render_template('add.html')
 
 #ruta de update
@@ -54,7 +54,7 @@ def update(id):
 
        return redirect(url_for('crud.home_crud'))
     else:
-        
+
         return render_template('update.html',updateid = updateid)
 
 #ruta de delete
@@ -64,8 +64,7 @@ def delete(id):
     deleteid =  student.query.get(id)
     db.session.delete(deleteid)
     db.session.commit()
-    print(deleteid)
-    flash('borrado correctamente')
+    flash('Borrado correctamente')
     return redirect(url_for('crud.home_crud'))
 
 #ruta de about

@@ -49,6 +49,11 @@
     list-style-type: none;
 }
 
+.crud-a{
+    text-decoration: none;
+    color: #0F54BB;
+
+}
 .options{
     display: flex;
     flex-direction: column;
@@ -84,8 +89,8 @@
     top: 23px;
     gap: 30px;
     margin-right: 36px;
-    
-    
+
+
 }
 
 .icons3{
@@ -98,7 +103,7 @@
     height: 40px;
     background-color: #F4F4FF;
     border-radius: 33px;
-    
+
 }
 
 .icons3:hover{
@@ -114,11 +119,11 @@
 .search{
     position: relative;
     top: 17px;
-    
+
 }
 
 .search2{
-   
+
     font-size: 17px;
     padding: 14px 15px;
     width: 277px;
@@ -127,7 +132,7 @@
      solid #F5F9FD;
     border-radius: 104px;
     background: #F5F9FD;
-    
+
 }
 
 .search2:focus{
@@ -171,9 +176,9 @@
 }
 
 .contain{
-    position: absolute;
+    position: relative;
     top: 156px;
-    left: 20%;
+    left: 278px;
     width: 80%;
     height: 80%;
 }
@@ -187,7 +192,7 @@
     vertical-align: top;
     caption-side: top;
     table-layout:auto
-   
+
 }
 .table>:not(caption)>*>* {
     padding: 1.5rem 0.5rem;
@@ -197,10 +202,10 @@
 }
 
 .table0{
-   
+
     color:#807e7e;
     border-top: 1px solid #ACACAC;
-    
+
 
 }
 
@@ -210,7 +215,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 90%;
-    
+
 }
 
 .table-option > li{
@@ -309,7 +314,7 @@ tbody{
     border-radius: 10px;
     margin-bottom: 30px ;
     padding-left: 20px;
-    
+
 }
 
 .form:hover{
@@ -353,8 +358,8 @@ h4{
     position: absolute;
     top: 20%;
     left: 40%;
-    width: 33%;
-    height: 27%;
+    width: 427px;
+    padding: 15px;
     font-family:  'Poppins';
     background: #f2f4f5;
     border-radius: 18px;
@@ -362,7 +367,7 @@ h4{
 
 .img{
     border-radius: 19px;
-    width: 50%;
+    width: 100%;
     height: 100%;
 
 }

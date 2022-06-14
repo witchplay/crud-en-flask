@@ -18,7 +18,7 @@
     {%include('partials/_navbar_login_form.html')%}
     {% block content%}
     {%endblock%}
-    
+
     <div class="div-register">
 
         {% with messages = get_flashed_messages() %}
@@ -28,29 +28,42 @@
                      <h4 class="email_exist">{{message}}</h4>
                  {% endfor %}
             {% endif%}
-  
+
         {% endwith %}
-       
+
         <h1 class="welcome">Registro</h1>
         <div class="line">
             <span class="line1"></span>
             <svg class="lock" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><g fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 15v15h22V15Zm4 0C9 9 9 5 16 5s7 4 7 10m-7 5v3"/><circle cx="16" cy="24" r="1"/></g></svg>
             <span class="line2"></span>
         </div>
-       
-    
-        
+
+
+
         <form action="/register" method="POST">
-          
+
             <input class="form" type="text" name="username" placeholder="Nombre de usuario"   required="required">
             <input class="form" type="text" name="email" placeholder="Correo" id="email" required="required">
             <input class="form" type="password" name="password" placeholder="Contraseña"   required="required">
-            
             <button class="botons" type="submit" >Registrar</button>
-            
+
         </form>
     </div>
 
-        
+<script>
+
+    document.getElementById('email').addEventListener('input', function() {
+    campo = event.target;
+    valido = document.getElementById('emailOK');
+
+    emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (emailRegex.test(campo.value)) {
+      valido.innerText = "válido";
+    } else {
+      valido.innerText = "incorrecto";
+    }
+});
+</script>
+
 </body>
 </html>
