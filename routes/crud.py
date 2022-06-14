@@ -67,12 +67,6 @@ def delete(id):
     flash('Borrado correctamente')
     return redirect(url_for('crud.home_crud'))
 
-#ruta de search
-@crud.route('/search')
-@login_required
-
-def search():
-    return redirect(url_for('crud.home_crud'))
 
 
 #ruta de about
