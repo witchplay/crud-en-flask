@@ -6,8 +6,8 @@ with app.app_context():
     db.create_all()
 
 login.init_app(app)
-login.login_view = 'login'
-login.login_message = '     '
+login.login_view = '/login'
+login.login_message = 'Por favor inicia sesion para ingresar a esta pagina'
 
 
 
