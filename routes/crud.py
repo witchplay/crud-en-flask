@@ -20,22 +20,24 @@ def home_crud():
 @login_required
 def add():
 
+    try:
+        if request.method == 'POST':
+            nombre = request.form['nombre']
+            correo = request.form['correo']
+            telefono = request.form['telefono']
+            fecha_de_cumpleanos = request.form['fecha']
+            students= student(nombre=nombre,correo=correo,telefono=telefono,fecha_de_cumpleanos=fecha_de_cumpleanos)
+            db.session.add(students)
+            db.session.commit()
 
-    if request.method == 'POST':
-       nombre = request.form['nombre']
-       correo = request.form['correo']
-       telefono = request.form['telefono']
-       fecha_de_cumpleanos = request.form['fecha']
-       students= student(nombre=nombre,correo=correo,telefono=telefono,fecha_de_cumpleanos=fecha_de_cumpleanos)
-       db.session.add(students)
-       db.session.commit()
+            flash('Agregado correctamente')
 
-       flash('Agregado correctamente')
+            return redirect(url_for('crud.home_crud'))
+        else:
 
-       return redirect(url_for('crud.home_crud'))
-    else:
-
-        return render_template('add.html')
+            return render_template('add.html')
+    except:
+        db.session.rollback()
 
 #ruta de update
 @crud.route('/update/<id>', methods=['POST','GET'])
@@ -43,19 +45,23 @@ def add():
 def update(id):
     updateid = student.query.get(id)
 
-    if request.method == 'POST':
-       updateid.nombre = request.form['nombre']
-       updateid.correo = request.form['correo']
-       updateid.telefono = request.form['telefono']
-       updateid.fecha_de_cumpleanos = request.form['fecha']
-       db.session.commit()
+    try:
+        if request.method == 'POST':
+            updateid.nombre = request.form['nombre']
+            updateid.correo = request.form['correo']
+            updateid.telefono = request.form['telefono']
+            updateid.fecha_de_cumpleanos = request.form['fecha']
+            db.session.commit()
 
-       flash('Modificado correctamente')
+            flash('Modificado correctamente')
 
-       return redirect(url_for('crud.home_crud'))
-    else:
+            return redirect(url_for('crud.home_crud'))
+        else:
 
-        return render_template('update.html',updateid = updateid)
+            return render_template('update.html',updateid = updateid)
+
+    except:
+        db.session.rollback()
 
 #ruta de delete
 @crud.route('/delete/<id>')

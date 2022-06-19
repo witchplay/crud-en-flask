@@ -62,6 +62,7 @@ def register():
         user = logindb(username=username,email=email,password=hash)
         db.session.add(user)
         db.session.commit()
+        flash(' Registrado correctamente ')
         return redirect('/login')
 
 

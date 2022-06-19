@@ -23,7 +23,10 @@
 
             {% if messages%}
                 {% for message in messages%}
-                    <h4 style="text-align:center; color:red;">{{message}}</h4>
+                <div class="notif">
+                    <span class="notiff-type">{{message}}</span>
+                </div>
+
                  {% endfor %}
             {% endif%}
 
@@ -42,10 +45,9 @@
 
 
 
-        <form action="" method="POST">
+        <form action="/login" method="POST">
 
-            <input class="form" type="text" name="email" placeholder="Email" id="email" required="required">
-
+            <input class="form" type="email" name="email" placeholder="Email" id="email" required="required">
 
             <input class="form" type="password" name="password" placeholder="Password"  id="password" required="required">
             <input class="checkbox" type="checkbox" name="recordar-password" >
