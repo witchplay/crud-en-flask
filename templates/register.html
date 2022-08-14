@@ -41,11 +41,27 @@
 
 
         <form action="/register" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.username(class_ = 'form') }}
+            {% for error in form.username.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
 
-            <input class="form" type="text" name="username" placeholder="Nombre de usuario"   required="required">
-            <input class="form" type="email" name="email" placeholder="Correo" id="email" required="required">
-            <input class="form" type="password" name="password" placeholder="Contraseña"   required="required">
-            <button class="botons" type="submit" >Registrar</button>
+            {{ form.email(class_ = 'form') }}
+            {% for error in form.email.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            {{ form.password(class_ = 'form') }}
+            {% for error in form.password.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            {{ form.confirm(class_ = 'form') }}
+            {% for error in form.confirm.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+
+            {{ form.submit(class_ = 'botons') }}
+
 
         </form>
     </div>

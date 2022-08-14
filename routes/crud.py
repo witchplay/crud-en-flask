@@ -3,6 +3,7 @@ import imp
 from flask import Blueprint,render_template,redirect,url_for,request,flash
 from flask_login import login_required
 from models.models import student
+from static.forms import AddForm, UpdateForm
 from utils.db import db
 
 
@@ -20,48 +21,57 @@ def home_crud():
 @login_required
 def add():
 
-    try:
-        if request.method == 'POST':
-            nombre = request.form['nombre']
-            correo = request.form['correo']
-            telefono = request.form['telefono']
-            fecha_de_cumpleanos = request.form['fecha']
-            students= student(nombre=nombre,correo=correo,telefono=telefono,fecha_de_cumpleanos=fecha_de_cumpleanos)
-            db.session.add(students)
-            db.session.commit()
+    form = AddForm()
 
-            flash('Agregado correctamente')
+    if form.validate_on_submit():
+        try:
+            if request.method == 'POST':
+                nombre = request.form['nombre']
+                correo = request.form['correo']
+                telefono = request.form['telefono']
+                fecha_de_cumpleanos = request.form['fecha']
+                students= student(nombre=nombre,correo=correo,telefono=telefono,fecha_de_cumpleanos=fecha_de_cumpleanos)
+                db.session.add(students)
+                db.session.commit()
 
-            return redirect(url_for('crud.home_crud'))
-        else:
+                flash('Agregado correctamente')
 
-            return render_template('add.html')
-    except:
-        db.session.rollback()
+                return redirect(url_for('crud.home_crud'))
+
+            else:
+
+                return render_template('add.html',form = form)
+        except:
+            db.session.rollback()
+
+    return render_template('add.html',form = form)
 
 #ruta de update
 @crud.route('/update/<id>', methods=['POST','GET'])
 @login_required
 def update(id):
     updateid = student.query.get(id)
+    form = UpdateForm()
 
-    try:
-        if request.method == 'POST':
-            updateid.nombre = request.form['nombre']
-            updateid.correo = request.form['correo']
-            updateid.telefono = request.form['telefono']
-            updateid.fecha_de_cumpleanos = request.form['fecha']
-            db.session.commit()
+    if form.validate_on_submit():
+        try:
+            if request.method == 'POST':
+                updateid.nombre = request.form['nombre']
+                updateid.correo = request.form['correo']
+                updateid.telefono = request.form['telefono']
+                updateid.fecha_de_cumpleanos = request.form['fecha']
+                db.session.commit()
 
-            flash('Modificado correctamente')
+                flash('Modificado correctamente')
 
-            return redirect(url_for('crud.home_crud'))
-        else:
+                return redirect(url_for('crud.home_crud'))
+            else:
+                return render_template('update.html',updateid = updateid,form = form)
 
-            return render_template('update.html',updateid = updateid)
+        except:
+            db.session.rollback()
 
-    except:
-        db.session.rollback()
+    return render_template('update.html',updateid = updateid,form = form)
 
 #ruta de delete
 @crud.route('/delete/<id>')

@@ -5,12 +5,30 @@
         <h1 class="inf">Actualizar informacion</h1>
         <form class="forms-1" action="/update/{{updateid.id}}" method="POST">
 
-            <input class="form" type="text" name="nombre" value="{{updateid.nombre}}"  required="required">
-            <input class="form" type="email" name="correo" value="{{updateid.correo}}" id="email" required="required">
-            <input class="form" type="text" name="telefono" value="{{updateid.telefono}}"  required="required">
-            <input class="form" type="date" name="fecha" value="{{updateid.fecha_de_cumpleanos}}" required="required">
+            {{ form.hidden_tag() }}
+            <label>{{updateid.nombre}}</label>
+            {{ form.nombre(class_ = 'form') }}
+            {% for error in form.nombre.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            <label>{{updateid.correo}}</label>
+            {{ form.correo(class_ = 'form') }}
+            {% for error in form.correo.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            <label>{{updateid.telefono}}</label>
+            {{ form.telefono(class_ = 'form') }}
+            {% for error in form.telefono.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            <label>{{updateid.fecha_de_cumpleanos}}</label>
+            {{ form.fecha(class_ = 'form') }}
+            {% for error in form.fecha.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
 
-            <button class="botons" type="submit">Actualizar</button>
+            {{ form.submit(class_ = 'botons') }}
+
 
         </form>
    </div>

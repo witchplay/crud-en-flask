@@ -4,12 +4,28 @@
        <h1 class="inf">Agregar informacion</h1>
        <form class="forms-1" action="/add" method="POST">
 
-           <input class="form" type="text" name="nombre" placeholder="Nombre"  required="required">
-           <input class="form" type="email" name="correo" placeholder="Correo" id="email" required="required">
-           <input class="form" type="text" name="telefono" placeholder="telefono"  required="required">
-           <input class="form" type="date" name="fecha" placeholder="Fecha de cumpleanos" required="required">
+           {{ form.hidden_tag() }}
+           {{ form.nombre(class_ = 'form') }}
+            {% for error in form.nombre.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
 
-           <button class="botons" type="submit">Agregar</button>
+            {{ form.correo(class_ = 'form') }}
+            {% for error in form.correo.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+
+            {{ form.telefono(class_ = 'form') }}
+            {% for error in form.telefono.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+            {{ form.fecha(class_ = 'form') }}
+            {% for error in form.fecha.errors %}
+                <span style = "color:red">{{error}}</span>
+            {%endfor%}
+
+            {{ form.submit(class_ = 'botons') }}
+
 
        </form>
   </div>
